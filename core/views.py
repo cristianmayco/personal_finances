@@ -6,11 +6,10 @@ from .models import Bill
 class IndexView(ListView):
     template_name = 'index.html'
     model = Bill
-    paginate_by = 3
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['bills'] = Bill.objects.all()
+        context['bills'] = Bill.objects.order_by('-id')
         return context
 
 
@@ -25,11 +24,6 @@ class EditView(UpdateView):
     model = Bill
     fields = ['type', 'due_date', 'payday', 'amount', 'active', 'description']
     context_object_name = 'bill'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['bills'] = Bill.objects.all()
-        return context
 
 
 class BillDeleteView(DeleteView):

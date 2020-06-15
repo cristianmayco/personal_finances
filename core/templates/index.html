@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
+
 <h1>Bills</h1>
+
+
 <a href="{% url 'create' %}">Create</a>
+
 {% for bill in bills%}
 <p>
-    <strong>{{ bill.type }}</strong>
+    <strong>{{ bill.get_type }}</strong>
 </p>
 <h5>Descrição: {{ bill.description }}</h5>
 <h5>Data de vencimento: {{ bill.due_date }}</h5>
@@ -13,7 +17,7 @@
 <h5>Data de pagamento: {{ bill.due_date }}</h5>
 {% endif %}
 <a href="{% url 'edit' bill.pk%}">Editar</a>
-<a href="{% url 'delete' bill.pk %}">Apagar</a>-->
+<a href="{% url 'delete' bill.pk %}">Apagar</a>
 
 {% endfor %}
 {% endblock%}
