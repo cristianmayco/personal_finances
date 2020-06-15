@@ -6,7 +6,7 @@
 
 <a href="{% url 'create' %}">Create</a>
 
-{% for bill in bills%}
+{% for bill in page_obj%}
 <p>
     <strong>{{ bill.get_type }}</strong>
 </p>
@@ -16,8 +16,38 @@
 {% if bill.payday%}
 <h5>Data de pagamento: {{ bill.due_date }}</h5>
 {% endif %}
-<a href="{% url 'edit' bill.pk%}">Editar</a>
+<a href="{% url 'edit' bill.pk %}">Editar</a>
 <a href="{% url 'delete' bill.pk %}">Apagar</a>
-
 {% endfor %}
+
+{% if is_paginated %}
+<nav>
+    <ul>
+        {% if page_obj.has_previous%}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        </li>
+        {% else %}
+        <li><a href="#">&laquo;</a></li>
+        {% endif %}
+
+        {% for num in paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li><a href="#"></a></li>
+        {% else %}
+        <li><a href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+         {% if page_obj.has_next%}
+        <li>
+            <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        </li>
+        {% else %}
+        <li><a href="#">&raquo;</a></li>
+        {% endif %}
+
+    </ul>
+</nav>
+{% endif %}
 {% endblock%}
