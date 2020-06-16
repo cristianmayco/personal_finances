@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content%}
-
+<form method="GET" action="" id="searchform">
+    <input class="searchfield" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
+</form>
 <h1>Bills</h1>
 
 
@@ -39,7 +41,7 @@
         {% endif %}
         {% endfor %}
 
-         {% if page_obj.has_next%}
+        {% if page_obj.has_next%}
         <li>
             <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
         </li>
