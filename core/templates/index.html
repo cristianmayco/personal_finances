@@ -1,55 +1,64 @@
 {% extends 'base.html' %}
 {% block content%}
-<form method="GET" action="" id="searchform">
-    <input class="searchfield" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
-</form>
-<h1>Bills</h1>
 
+<div class="container bg-dark">
+    <div class="row">
+        <div class="col-lg-5">
 
-<a href="{% url 'create' %}">Create</a>
-
-{% for bill in page_obj%}
-<p>
-    <strong>{{ bill.get_type }}</strong>
-</p>
-<h5>Descrição: {{ bill.description }}</h5>
-<h5>Data de vencimento: {{ bill.due_date }}</h5>
-<h5>Valor: {{ bill.amount }}</h5>
-{% if bill.payday%}
-<h5>Data de pagamento: {{ bill.due_date }}</h5>
-{% endif %}
-<a href="{% url 'edit' bill.pk %}">Editar</a>
-<a href="{% url 'delete' bill.pk %}">Apagar</a>
-{% endfor %}
-
+                      <a type="button" class="btn btn-success btn-lg btn-block mb-4 mt-4" href="{% url 'create' %}">Create</a>
+            {% for bill in page_obj %}
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-text">Type: {{ bill.get_type}}.<br>
+                        Description: {{ bill.description}}.<br>
+                        Due: {{ bill.due_date}}.<br>
+                        Amount: {{ bill.amount}}.</h3>
+                    {% if bill.payday%}
+                    <h3 class="card-text">Payday: {{ bill.payday}}.</h3>
+                    {% else %}
+                    <h3 class="card-text bg-warning">Unpaid.</h3>
+                    {% endif%}
+                    <a type="button" href="{% url 'edit' bill.pk %}"
+                       class="btn btn-primary btn-lg btn-block ">Editar</a>
+                    <a type="button" href="{% url 'delete' bill.pk %}"
+                       class="btn btn-danger btn-lg btn-block">Apagar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% if is_paginated %}
-<nav>
-    <ul>
+<nav aria-label="navigation-bills" class="container">
+    <ul class="pagination">
         {% if page_obj.has_previous%}
-        <li>
-            <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                Previous
+            </a>
         </li>
         {% else %}
-        <li><a href="#">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
         {% endif %}
 
         {% for num in paginator.page_range %}
         {% if page_obj.number == num %}
-        <li><a href="#"></a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">{{num}}</a></li>
         {% else %}
-        <li><a href="?page={{ num }}">{{ num }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
         {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next%}
-        <li>
-            <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
         </li>
         {% else %}
-        <li><a href="#">&raquo;</a></li>
+        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
         {% endif %}
 
     </ul>
 </nav>
 {% endif %}
+
 {% endblock%}

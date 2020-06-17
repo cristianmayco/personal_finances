@@ -24,7 +24,7 @@ SECRET_KEY = 'z9v9!8tugie2=*q6gksfo=2m#ka&act@o7*v!z%baw$gnd=mx9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -117,14 +118,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Extra security settings
-SECURE_HSTS_SECONDS = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_CONTENT_TYPE_NONIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
-X_FRAME_OPTIONS = 'DENY'
-
-SECURE_SSL_REDIRECT = False  # HTTPS
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# # Extra security settings
+# SECURE_HSTS_SECONDS = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_CONTENT_TYPE_NONIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+# CSRF_COOKIE_HTTPONLY = False
+# X_FRAME_OPTIONS = 'DENY'
+#
+# SECURE_SSL_REDIRECT = False  # HTTPS

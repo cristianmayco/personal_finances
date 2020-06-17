@@ -1,8 +1,12 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html'%}
+{% load crispy_forms_tags%}
+{% include 'partial/_navbar.html'%}
+{% block content%}
+<div class="container bg-ligth">
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Atualizar">
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-success btn-block" value="Atualizar">
 </form>
+</div>
 {% endblock %}

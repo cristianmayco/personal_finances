@@ -1,7 +1,17 @@
 {% extends 'base.html'%}
-{% block content %}
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
-{% endblock%}
+{% load crispy_forms_tags%}
+{% include 'partial/_navbar.html'%}
+{% block content%}
+<div class="container bg-ligth">
+    <div class="row">
+        <div class="col-lg-5">
+            <form method="post" class="">{% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-success btn-lg btn-block mb-4 mt-4s" value="Save">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% include 'partial/_footer.html'%}

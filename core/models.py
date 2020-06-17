@@ -21,14 +21,14 @@ class Bill(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     created = models.DateField(auto_now_add=True)
     due_date = models.DateField(blank=False)
-    payday = models.DateField(null=True)
+    payday = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.type
 
     def save(self, *args, **kwargs):
-        if self.payday is None and self.active is False:
+        if not self.active and not self.payday:
             raise ValueError('Inactive payments must have payment date')
         return super(Bill, self).save(*args, **kwargs)
 

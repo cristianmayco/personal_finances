@@ -6,7 +6,8 @@ from .models import Bill
 class IndexView(ListView):
     template_name = 'index.html'
     model = Bill
-    paginate_by = 5
+    paginate_by = 4
+    ordering = ['-id']
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -15,7 +16,7 @@ class IndexView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            return Bill.objects.filter(type=query).order_by('-id')
+            return Bill.objects.filter(type=query)
         else:
             return Bill.objects.all()
 
