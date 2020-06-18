@@ -38,3 +38,6 @@ class Bill(models.Model):
     def get_type(self):
         types = dict(list_types)
         return types[str(self.type)]
+
+    def amount_to_reais(self):
+        return f'R$ {self.amount:.2f}'

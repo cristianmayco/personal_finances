@@ -5,23 +5,23 @@
     <div class="row">
         <div class="col-lg-5">
 
-                      <a type="button" class="btn btn-success btn-lg btn-block mb-4 mt-4" href="{% url 'create' %}">Create</a>
+            <a type="button" class="btn btn-success btn-lg btn-block mb-4 mt-4" href="{% url 'create' %}">Create</a>
             {% for bill in page_obj %}
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-text">Type: {{ bill.get_type}}.<br>
-                        Description: {{ bill.description}}.<br>
-                        Due: {{ bill.due_date}}.<br>
-                        Amount: {{ bill.amount}}.</h3>
+                    <h3 class="card-text display-4">Tipo: {{ bill.get_type}}.<br>
+
+                        Vencimento: {{ bill.due_date}}.<br>
+                        Valor: {{ bill.amount_to_reais}}.</h3>
                     {% if bill.payday%}
                     <h3 class="card-text">Payday: {{ bill.payday}}.</h3>
                     {% else %}
                     <h3 class="card-text bg-warning">Unpaid.</h3>
                     {% endif%}
                     <a type="button" href="{% url 'edit' bill.pk %}"
-                       class="btn btn-primary btn-lg btn-block ">Editar</a>
+                       class=" btn-primary text-center btn-block display-4">Editar</a>
                     <a type="button" href="{% url 'delete' bill.pk %}"
-                       class="btn btn-danger btn-lg btn-block">Apagar</a>
+                       class=" btn-danger text-center btn-block display-4">Apagar</a>
                 </div>
             </div>
             {% endfor %}
