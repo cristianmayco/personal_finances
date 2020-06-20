@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Personal Finance</title>
     {% include 'partial/_head.html'%}
 </head>
-<body>
+<body class="bg-dark">
 {% include 'partial/_navbar.html'%}
-{% block content%}
-{% endblock %}
-
+<main>
+    {% block content%}
+    {% endblock %}
+</main>
 {% include 'partial/_footer.html'%}
 </body>
 </html>
