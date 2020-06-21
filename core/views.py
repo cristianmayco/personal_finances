@@ -1,6 +1,6 @@
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from django.urls import reverse_lazy
-from .models import Bill, list_types
+from .models import Bill
 from django.db.models import Q
 
 
@@ -13,12 +13,14 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         return context
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         query = self.request.GET.get('q')
+        qs = super().get_queryset(*args, **kwargs)
+
         if query:
-            return Bill.objects.filter(type=query).order_by('-id')
+            return qs.filter(Q(description__icontains=query)).order_by('-id')
         else:
-            return Bill.objects.all().order_by('-id')
+            return qs.order_by('-id')
 
 
 class BillCreateView(CreateView):

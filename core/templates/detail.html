@@ -8,7 +8,7 @@
                <span class="card-text display-3"> Due: {{ bill.due_date|date:"d/m/Y"}}.<br>
                <span class="card-text display-3"> Amount: {{ bill.amount_to_reais}}.</span><br>
             {% if bill.payday%}
-            <span class="card-text">Payday: {{ bill.payday}}.</span>
+            <span class="card-text">Payday: {{ bill.payday|date:"d/m/Y"}}.</span>
             {% else %}
             <span class="card-text">Payday: -.</span>
             {% endif%}
