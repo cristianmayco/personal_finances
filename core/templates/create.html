@@ -1,11 +1,18 @@
 {% extends 'base.html'%}
 {% load crispy_forms_tags%}
 {% block content%}
-<div class="container bg-ligth">
+<div class="container bg-dark">
     <div class="row">
-        <div class="col-lg-5">
-            <form method="post" class="">{% csrf_token %}
-                {{ form|crispy }}
+        <div class="col">
+            <form method="post" class="mt-2 text-light">{% csrf_token %}
+
+                {{ form.type|as_crispy_field }}
+                {{ form.description|as_crispy_field }}
+                {{ form.amount|as_crispy_field }}
+                {{ form.due_date|as_crispy_field }}
+                {{ form.payday|as_crispy_field }}
+
+
                 <input type="submit" class="btn btn-success btn-lg btn-block mb-4 mt-4s" value="Save">
             </form>
         </div>

@@ -1,6 +1,7 @@
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from django.urls import reverse_lazy
-from .models import Bill
+from .models import Bill, list_types
+from django.db.models import Q
 
 
 class IndexView(ListView):

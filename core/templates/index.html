@@ -22,6 +22,8 @@
                        class=" rounded btn-primary text-center btn-block display-4">Edit</a>
                     <a type="button" href="{% url 'delete' bill.pk %}"
                        class="rounded  btn-danger text-center btn-block display-4">Remove</a>
+                    <a type="button" href="{% url 'detail' bill.pk %}"
+                       class="rounded  btn-info text-center btn-block display-4">Detail</a>
                 </div>
             </div>
             {% endfor %}

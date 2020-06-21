@@ -4,6 +4,6 @@ from core import models
 
 @admin.register(models.Bill)
 class BillAdmin(admin.ModelAdmin):
-    ordering = ['created']
+    ordering = ['-id']
     list_display = ['type', 'description', 'due_date', 'payday', 'active', 'amount']
     list_filter = ['type', 'due_date', 'payday', 'active']

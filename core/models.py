@@ -19,7 +19,6 @@ class Bill(models.Model):
     )
     description = models.TextField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    created = models.DateField(auto_now_add=True)
     due_date = models.DateField(blank=False)
     payday = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=True)
@@ -28,8 +27,8 @@ class Bill(models.Model):
         return self.type
 
     def save(self, *args, **kwargs):
-        if not self.active and not self.payday:
-            raise ValueError('Inactive payments must have payment date')
+        if self.payday is not None or self.payday != '':
+            self.active = False
         return super(Bill, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
