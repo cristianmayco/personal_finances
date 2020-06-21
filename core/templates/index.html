@@ -8,11 +8,13 @@
             {% for bill in page_obj %}
             <div class="card mb-4 shadow-sm bg-dark text-white border-light">
                 <div class="card-body">
-                    <span class="card-text display-4">{{ bill.get_type}}</span><br>
                     {% if bill.payday%}
+                    <span class="card-text display-4">{{ bill.get_type}}</span><br>
+
                     <span class="card-text display-4">Due: {{ bill.due_date|date:"d/m/Y"}}</span><br>
-                    <span class="card-text display-4 text-success">Valor: {{ bill.amount_to_reais}}</span><br>
+                    <span class="card-text display-4">Valor: {{ bill.amount_to_reais}}</span><br>
                     {% else %}
+                    <span class="card-text display-4 text-danger">{{ bill.get_type}}</span><br>
                     <span class="card-text display-4 text-danger">Due: {{ bill.due_date|date:"d/m/Y"}}</span><br>
                     <span class="card-text display-4 text-danger">Valor: {{ bill.amount_to_reais}}</span>
                     {% endif%}
