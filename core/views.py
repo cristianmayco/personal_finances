@@ -25,19 +25,19 @@ class HomeView(ListView):
 
 class BillCreateView(CreateView):
     model = Bill
-    template_name = '../templates/create.html'
+    template_name = '../templates/bills/create.html'
     fields = ['type', 'due_date', 'payday', 'amount', 'active', 'description']
 
 
 class EditView(UpdateView):
-    template_name = '../templates/edit.html'
+    template_name = '../templates/bills/edit.html'
     model = Bill
     fields = ['type', 'due_date', 'payday', 'amount', 'active', 'description']
     context_object_name = 'bill'
 
 
 class BillDeleteView(DeleteView):
-    template_name = '../templates/delete.html'
+    template_name = '../templates/bills/delete.html'
     model = Bill
     success_url = reverse_lazy('home')
 

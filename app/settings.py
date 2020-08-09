@@ -119,6 +119,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+AUTH_USER_MODEL = 'user.User'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'index'
+
+# Session: 60s * 60m * 24h * 1d
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
+
+# Save every request
+SESSION_SAVE_EVERY_REQUEST = False
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # # Extra security settings
 # SECURE_HSTS_SECONDS = True
