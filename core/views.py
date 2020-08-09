@@ -4,13 +4,13 @@ from .models import Bill
 from django.db.models import Q
 
 
-class IndexView(ListView):
-    template_name = 'index.html'
+class HomeView(ListView):
+    template_name = '../templates/home.html'
     model = Bill
     paginate_by = 4
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = super(HomeView, self).get_context_data(**kwargs)
         return context
 
     def get_queryset(self, *args, **kwargs):
@@ -25,23 +25,23 @@ class IndexView(ListView):
 
 class BillCreateView(CreateView):
     model = Bill
-    template_name = 'create.html'
+    template_name = '../templates/create.html'
     fields = ['type', 'due_date', 'payday', 'amount', 'active', 'description']
 
 
 class EditView(UpdateView):
-    template_name = 'edit.html'
+    template_name = '../templates/edit.html'
     model = Bill
     fields = ['type', 'due_date', 'payday', 'amount', 'active', 'description']
     context_object_name = 'bill'
 
 
 class BillDeleteView(DeleteView):
-    template_name = 'delete.html'
+    template_name = '../templates/delete.html'
     model = Bill
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('home')
 
 
 class BillDetailView(DetailView):
-    template_name = 'detail.html'
+    template_name = '../templates/detail.html'
     model = Bill
